@@ -1,41 +1,73 @@
 let inpFile = document.querySelector('[name="file"]');
-let div = document.querySelector('.area');
-div.addEventListener("click", function () {
+
+let area = document.querySelector('.area');
+
+let ul = document.getElementById("ul");
+
+
+
+
+area.addEventListener("click", function () {
+
     this.children[1].click();
+
 })
-div.addEventListener("dragover", function (ev) {
-    ev.preventDefault
+
+area.addEventListener("dragover", function (el) {
+
+    el.preventDefault();
+
 })
-div.addEventListener("drop", function () {
+
+
+
+
+area.addEventListener("drop", function () {
+
     this.children[1].click();
+
 })
-function previewFiles(input) {
-    const preview = document.getElementById('preview');
-    const {
-        files
-    } = input
 
-    Array.from(files).forEach(file => {
-        const reader = new FileReader();
 
-        reader.onload = e => {
-            const div = document.createElement('div');
-            const img = document.createElement('img');
-            const button = document.createElement('button');
 
-            img.src = e.target.result;
-            img.width = 200;
-            img.height = 200;
-            button.textContent = "X";
-            button.addEventListener('click', () => {
-                preview.removeChild(div);
-            })
 
-            div.appendChild(img);
-            div.appendChild(button);
-            preview.appendChild(div);
+
+
+
+inpFile.addEventListener("change", function (params) {
+
+    [...this.files].forEach(file => {
+
+        let reader = new FileReader();
+
+        let li = document.createElement("li"),
+
+            icon = document.createElement("i"),
+
+            img = document.createElement("i");
+
+        reader.onload = function () {
+
+            icon.classList.add("bi", "bi-x-circle-fill");
+
+            img.innerHTML = "<img  width='45%' height='100%' src='" + this.result + "'/>";
+
         }
 
         reader.readAsDataURL(file);
+
+        li.append(icon, img);
+
+        ul.appendChild(li);
+
+        icon.addEventListener("click", function () {
+
+            icon.parentElement.remove();
+
+        })
+
     })
-}
+
+})
+
+
