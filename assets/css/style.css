@@ -1,0 +1,19 @@
+.area {
+    width: 100%;
+    height: 500px;
+    line-height: 500px;
+    text-align: center;
+    margin: 25px 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.bi-cloud-arrow-up {
+    font-size: 5em;
+}
+#preview {
+     display: flex;
+     gap: 100px;
+    }
+    
+    
